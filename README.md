@@ -105,7 +105,7 @@ After running the permutation test and using the difference in means for my test
 
 <iframe src = "assets/pop cust diff.html" width=800 height=600 frameBorder=0></iframe>
 
-I calculated my p-value to be 0.171, which means I fail to reject my null hypothesis and that the distribution of `population` is not dependent on the missingness of `customers affected`, making the `customers affected` column MCAR in reference to the `population` column. <br>
+I calculated my p-value to be 0.168, which means I fail to reject my null hypothesis and that the distribution of `population` is not dependent on the missingness of `customers affected`, making the `customers affected` column MCAR in reference to the `population` column. <br>
 
 I do a similar setup and test for the relationship between the `demand loss mw` column (peak consumer demand lost in Megawatts) and `customers affected` column using the total variation distance, only this time I find my p-value to be 0. I can then safely reject my null hypothesis for this permutation test (that the distribution of `demand loss mw` was not dependent on the missingness of `customers affected`) in favor of the alternative, that they are dependent. <br>
 
@@ -122,4 +122,4 @@ I have a population (outages caused by severe storms) and a sample (outages caus
 
 <iframe src = "assets/hypothesis.html" width=800 height=600 frameBorder=0></iframe>
 
-The p-value calculated, which is the probability of a statistic as or more extreme as my test statistic occurring in the wild, is 0.00002. This tells me I should reject my null hypothesis in favor of the alternative. I conclude that hurricanes do cause longer power outages in comparison to those caused by severe weather. <br>
+The p-value calculated, which is the probability of a statistic as or more extreme as my test statistic occurring in the wild, is 0.00004. This tells me I should reject my null hypothesis in favor of the alternative. I conclude that hurricanes do cause longer power outages in comparison to those caused by severe weather. <br>
