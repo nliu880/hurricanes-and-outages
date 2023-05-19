@@ -12,7 +12,7 @@ The original dataframe contains 1535 rows and 57 columns. Most of these columns 
 
 - `cause category`: category of event that caused the power outage (ex. `severe weather')
 - `cause category detail`: detailed breakdown of the cause of some power outage (ex. `heavy wind`)
-- 'outage duration': the duration of the power outage, given in minutes
+- `outage duration`: the duration of the power outage, given in minutes
 
 ## Data Cleaning and EDA (Exploratory Data Analysis)
 
@@ -21,7 +21,7 @@ The original dataframe contains 1535 rows and 57 columns. Most of these columns 
 Like most most datasets, this one has to be cleaned before it can be used. The original dataset existed as an Excel file and thus had to be converted to a .csv file in order to be read in through `pandas`. After reading in the now-csv file, I proceeded to clean the data with the following steps:
 
 - Keeping only relevant columns. This was done by rereading in the .csv file except now with a limitation on the columns. I chose to reread the file as opposed to dropping columns as there were more columns to be dropped than kept. 
-- Changing all the column names to lower case. The original dataset had all the column names in all upper case letters, along with periods in place of spaces. I replaced all the periods with white spaces and changed all the lettering to lower case and also made edits for special cases (eg `U.S._STATE` to `us state')
+- Changing all the column names to lower case. The original dataset had all the column names in all upper case letters, along with periods in place of spaces. I replaced all the periods with white spaces and changed all the lettering to lower case and also made edits for special cases (eg `U.S._STATE` to `us state`)
 - Typecasted all numerical information to float
 - Combined the columns containing information about outage start time and date into one column and similarly for the restoration time. I also added a column containing the total outage time in days despite there already being an `outage duration` column. The column I added has time in days/minutes/hours format, whereas `outage duration` is given in minutes. My added column is more intuitive to understand (ex. 1 day vs 1440 minutes), but the `outage duration` column is easier to perform operations on.
 - Converted the `outage duration` column to hours rather than minutes
@@ -60,7 +60,19 @@ I first want to see what the most common causes of power outages are. I decided 
 
 We can also plot these causes as a histogram. 
 
-<iframe src="assets/top10.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src = "assets/top10.html" width=800 height=600 frameBorder=0></iframe>
+
+Here we see that the most common cause of power outages is actually vandalism and not a naturally occurring phenomena. This was unexpected! Severe weather (thunderstorm, winter storm, hurricanes, etc) do make up a large chunk, however. If I had plotted by `cause category` instead of `cause category detail`, it's likely that `severe weather` would have been the most common cause of power outages. <br>
+
+Some other results of the EDA I did can be seen in the following graphs. 
+
+<iframe src = "assets/severe weather.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src = "assets/hurricane.html" width=800 height=600 frameBorder=0></iframe>
+
+These two boxplots display the range of power outage durations for power outages caused by severe weather (hurricanes included) and power outages caused by hurricanes. This tells me that my initial questions asking whether or not hurricanes cause longer power outages might be onto something. The majority of hurricane caused outages seem to lie in the 25-200 hours range, while the bulk of those caused by severe weather like in the 15-80 hour range. 
+
+
+
 
 
 
