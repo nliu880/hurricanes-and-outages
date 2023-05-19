@@ -115,8 +115,8 @@ With the missingness analyzed, I move onto hypothesis testing for my question. D
 
 I first filter my dataframe to only outages caused by `severe weather`, then drop the rows with missing `outage duration` values. There are only 19 missing `outage duration` values, thus dropping them are unlikely to affect the distribution. I then set up my null and alternative hypothesis. <br>
 
-$H_o$ (null hypothesis): Hurricanes do not cause longer power outages in comparison to other power outages caused by severe weather. <br>
-$H_a$ (alternative hypothesis): Hurricanes do cause longer power outages in comparison to other power outages caused by severe weather. <br>
+Null hypothesis: Hurricanes do not cause longer power outages in comparison to other power outages caused by severe weather. <br>
+Alternative hypothesis: Hurricanes do cause longer power outages in comparison to other power outages caused by severe weather. <br>
 
 I have a population (outages caused by severe storms) and a sample (outages caused by hurricanes). My hypothesis test will use the mean of the group (the average of the distribution) as my test statistic and use a p-value of 0.05.
 
