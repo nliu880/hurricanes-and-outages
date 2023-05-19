@@ -122,4 +122,4 @@ I have a population (outages caused by severe storms) and a sample (outages caus
 
 <iframe src = "assets/hypothesis.html" width=800 height=600 frameBorder=0></iframe>
 
-The p-value calculated, which is the probability of a statistic as or more extreme as my test statistic occurring in the wild, is 0.00002. This tells me I should reject my null hypothesis in favor of the alternative, that hurricanes do cause longer power outages in comparison to those caused by severe weather. <br>
+The p-value calculated, which is the probability of a statistic as or more extreme as my test statistic occurring in the wild, is 0.00002. This tells me I should reject my null hypothesis in favor of the alternative. I conclude that hurricanes do cause longer power outages in comparison to those caused by severe weather. <br>
