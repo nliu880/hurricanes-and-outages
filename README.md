@@ -67,6 +67,9 @@ Here we see that the most common cause of power outages is actually vandalism an
 Some other results of the EDA I did can be seen in the following graphs. 
 
 <iframe src = "assets/severe weather.html" width=800 height=600 frameBorder=0></iframe>
+
+<br>
+
 <iframe src = "assets/hurricane.html" width=800 height=600 frameBorder=0></iframe>
 
 These two boxplots display the range of power outage durations for power outages caused by severe weather (hurricanes included) and power outages caused by hurricanes. This tells me that my initial questions asking whether or not hurricanes cause longer power outages might be onto something. The majority of hurricane caused outages seem to lie in the 25-200 hours range, while the bulk of those caused by severe weather like in the 15-80 hour range. 
