@@ -68,14 +68,58 @@ Some other results of the EDA I did can be seen in the following graphs.
 
 <iframe src = "assets/severe weather.html" width=800 height=600 frameBorder=0></iframe>
 
-<br>
-
 <iframe src = "assets/hurricane.html" width=800 height=600 frameBorder=0></iframe>
 
-These two boxplots display the range of power outage durations for power outages caused by severe weather (hurricanes included) and power outages caused by hurricanes. This tells me that my initial questions asking whether or not hurricanes cause longer power outages might be onto something. The majority of hurricane caused outages seem to lie in the 25-200 hours range, while the bulk of those caused by severe weather like in the 15-80 hour range. 
+These two boxplots display the range of power outage durations for power outages caused by severe weather (hurricanes included) and power outages caused by hurricanes. This tells me that my initial questions asking whether or not hurricanes cause longer power outages might be onto something. The majority of hurricane caused outages seem to lie in the 25-200 hours range, while the bulk of those caused by severe weather like in the 15-80 hour range. <br>
 
+I also looked into how `outage duration` could be related to `customers affected`. I plotted these on scatter plots, once for outage durations of power outages caused by severe weather (hurricanes excluded) and once for just hurricanes. 
 
+<iframe src = "assets/severe weather hours.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src = "assets/hurricane hours.html" width=800 height=600 frameBorder=0></iframe>
 
+The two scatter plots here seem to have vaguely similar shapes, but there doesn't seem to much of a correlation between the two variables. <br>
 
+With EDA done, I move on to assessing missingness. 
 
+## Assessment of Missingness
 
+There are two parts to this section, one where I analyze whether a the missingness of a column is NMAR (not missing at random) and another where I determine the missingness dependency of a different column. 
+
+### NMAR Analysis
+
+In this portion, I looked back at the original, full, dataframe to analyze the missingness of the column `time of restoration` to see if it would qualify as NMAR, where the missingness of the value would depend on the value itself. I believe this column to be NMAR as the value itself (if it were not missing) could explain the missingness of the data. For example, several of the observations with `time of restoration` missing have `intentional attack` as the cause of the outage. If the attack failed, there would be no time of restoration for power. Thus I conclude that the missing values in `time of restoration` are NMAR. <br>
+
+I can extend that argument and make the conclusion that the missing values of `outage duration` are then MAR (missing at random). If you examine the dataframe, you notice that only the rows where `time of restoration` (and similarly, `date of restoration`) are missing are the values for `outage duration` also missing. This also makes sense logically, as if there is no outage end time, there is no outage duration time. Thus if `time of restoration` is NMAR, then `outage duration` is MAR.
+
+### Missingness Dependency
+
+In this section, I examine the missingness dependency of the column `customers affected`. 
+
+First, I examine the distribution of the `population` column when `customers affected` is missing or not missing. 
+
+<iframe src = "assets/pop cust dist.html" width=800 height=600 frameBorder=0></iframe>
+
+I set up a permutation test to determine if `customers affected` being missing affects the `population` distribution. I take my null hypothesis to be that the distribution of `population` does not depend on `customers affected` and my alternative hypothesis to be that it is. I use a significance level of 0.05. <br>
+
+After running the permutation test and using the difference in means for my test statistic, I plot my results in the following histogram. 
+
+<iframe src = "assets/pop cust diff.html" width=800 height=600 frameBorder=0></iframe>
+
+I calculated my p-value to be 0.171, which means I fail to reject my null hypothesis and that the distribution of `population` is not dependent on the missingness of `customers affected`, making the `customers affected` column MCAR in reference to the `population` column. <br>
+
+I do a similar setup and test for the relationship between the `demand loss mw` column (peak consumer demand lost in Megawatts) and `customers affected` column using the total variation distance, only this time I find my p-value to be 0. I can then safely reject my null hypothesis for this permutation test (that the distribution of `demand loss mw` was not dependent on the missingness of `customers affected`) in favor of the alternative, that they are dependent. <br>
+
+With the missingness analyzed, I move onto hypothesis testing for my question. Do hurricanes cause longer power outages in comparison to other outages caused by severe weather?
+
+## Hypothesis Testing
+
+I first filter my dataframe to only outages caused by `severe weather`, then drop the rows with missing `outage duration` values. There are only 19 missing `outage duration` values, thus dropping them are unlikely to affect the distribution. I then set up my null and alternative hypothesis. <br>
+
+$H_o$ (null hypothesis): Hurricanes do not cause longer power outages in comparison to other power outages caused by severe weather. <br>
+$H_a$ (alternative hypothesis): Hurricanes do cause longer power outages in comparison to other power outages caused by severe weather. <br>
+
+I have a population (outages caused by severe storms) and a sample (outages caused by hurricanes). My hypothesis test will use the mean of the group (the average of the distribution) as my test statistic and use a p-value of 0.05.
+
+<iframe src = "assets/hypothesis.html" width=800 height=600 frameBorder=0></iframe>
+
+The p-value calculated, which is the probability of a statistic as or more extreme as my test statistic occurring in the wild, is 0.00002. This tells me I should reject my null hypothesis in favor of the alternative, that hurricanes do cause longer power outages in comparison to those caused by severe weather. <br>
