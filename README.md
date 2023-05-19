@@ -29,32 +29,12 @@ Like most most datasets, this one has to be cleaned before it can be used. The o
 
 The dataset is now easier to read and work with, having only 17 columns as opposed to 57. I continue to check for missing values (-99, -, etc.) and find that there are none. There are many `NaN` values, but I was unable to replace them with 0 as 0 may also have significant context in this dataset. <br>
 
-With this now complete, the dataset is cleaned and ready for EDA. There will be additional edits made in later sections, but this is the majority of the cleaning that will take place. 
+With this now complete, the dataset is cleaned and ready for EDA. There will be additional edits made in later sections, but this is the majority of the cleaning that will take place. Below are the first 5 rows of the cleaned dataframe. 
 
-    us state postal code nerc region      climate region  anomaly level  \
-0  Minnesota          MN         MRO  East North Central           -0.3   
-1  Minnesota          MN         MRO  East North Central           -0.1   
-2  Minnesota          MN         MRO  East North Central           -1.5   
-3  Minnesota          MN         MRO  East North Central           -0.1   
-4  Minnesota          MN         MRO  East North Central            1.2   
-
-  climate category      cause category cause category detail hurricane names  \
-0           normal      severe weather                   NaN             NaN   
-1           normal  intentional attack             vandalism             NaN   
-2             cold      severe weather            heavy wind             NaN   
-3           normal      severe weather          thunderstorm             NaN   
-4             warm      severe weather                   NaN             NaN   
-
-   outage duration  demand loss mw  customers affected  population  \
-0            51.00             NaN             70000.0   5348119.0   
-1             0.02             NaN                 NaN   5457125.0   
-2            50.00             NaN             70000.0   5310903.0   
-3            42.50             NaN             68200.0   5380443.0   
-4            29.00           250.0            250000.0   5489594.0   
-
-           start time    restoration time      total time  missing  
-0 2011-07-01 17:00:00 2011-07-03 20:00:00 2 days 03:00:00    False  
-1 2014-05-11 18:38:00 2014-05-11 18:39:00 0 days 00:01:00     True  
-2 2010-10-26 20:00:00 2010-10-28 22:00:00 2 days 02:00:00    False  
-3 2012-06-19 04:30:00 2012-06-20 23:00:00 1 days 18:30:00    False  
-4 2015-07-18 02:00:00 2015-07-19 07:00:00 1 days 05:00:00    False  
+|    | us state   | postal code   | nerc region   | climate region     |   anomaly level | climate category   | cause category     | cause category detail   |   hurricane names |   outage duration |   demand loss mw |   customers affected |   population | start time          | restoration time    | total time      |
+|---:|:-----------|:--------------|:--------------|:-------------------|----------------:|:-------------------|:-------------------|:------------------------|------------------:|------------------:|-----------------:|---------------------:|-------------:|:--------------------|:--------------------|:----------------|
+|  0 | Minnesota  | MN            | MRO           | East North Central |            -0.3 | normal             | severe weather     | nan                     |               nan |             51    |              nan |                70000 |  5.34812e+06 | 2011-07-01 17:00:00 | 2011-07-03 20:00:00 | 2 days 03:00:00 |
+|  1 | Minnesota  | MN            | MRO           | East North Central |            -0.1 | normal             | intentional attack | vandalism               |               nan |              0.02 |              nan |                  nan |  5.45712e+06 | 2014-05-11 18:38:00 | 2014-05-11 18:39:00 | 0 days 00:01:00 |
+|  2 | Minnesota  | MN            | MRO           | East North Central |            -1.5 | cold               | severe weather     | heavy wind              |               nan |             50    |              nan |                70000 |  5.3109e+06  | 2010-10-26 20:00:00 | 2010-10-28 22:00:00 | 2 days 02:00:00 |
+|  3 | Minnesota  | MN            | MRO           | East North Central |            -0.1 | normal             | severe weather     | thunderstorm            |               nan |             42.5  |              nan |                68200 |  5.38044e+06 | 2012-06-19 04:30:00 | 2012-06-20 23:00:00 | 1 days 18:30:00 |
+|  4 | Minnesota  | MN            | MRO           | East North Central |             1.2 | warm               | severe weather     | nan                     |               nan |             29    |              250 |               250000 |  5.48959e+06 | 2015-07-18 02:00:00 | 2015-07-19 07:00:00 | 1 days 05:00:00 |
